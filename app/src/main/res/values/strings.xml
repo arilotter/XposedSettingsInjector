@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Xposed Settings Injector</string>
+    <string name="xposed_modules">Xposed Modules</string>
+    <string name="xposed_description">Injects Xposed module settings into (close-to) stock Settings app.</string>
+
+</resources>
