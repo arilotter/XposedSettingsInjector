@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_general_title">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="only_installer"
+            android:summary="@string/settings_only_show_installer"
+            android:title="@string/settings_only_show_installer_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_descriptions"
+            android:summary="@string/settings_show_descriptions"
+            android:title="@string/settings_show_descriptions_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_app_title">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="hide_launcher_icon"
+            android:summary="@string/settings_hide_launcher_icon"
+            android:title="@string/settings_hide_launcher_icon_title"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
