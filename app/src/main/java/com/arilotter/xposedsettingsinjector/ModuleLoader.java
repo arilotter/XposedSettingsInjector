@@ -71,12 +71,13 @@ public class ModuleLoader {
 
     static List<String> getActiveModulesFromSd() throws IOException {
         List<String> modules = new ArrayList<>();
-        if (!new File(PUBLIC_MODULES_LIST_FILE).exists()) {
+        File publicFile = new File(PUBLIC_MODULES_LIST_FILE);
+        if (!publicFile.exists()) {
             XposedBridge.log("[XposedSettingsInjector] No public copy of modules.list found!");
             return modules;
         }
         String line;
-        BufferedReader br = new BufferedReader(new FileReader(PUBLIC_MODULES_LIST_FILE));
+        BufferedReader br = new BufferedReader(new FileReader(publicFile));
         while ((line = br.readLine()) != null) {
             modules.add(line);
         }
