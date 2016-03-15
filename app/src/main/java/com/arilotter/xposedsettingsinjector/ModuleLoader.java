@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.robv.android.xposed.XposedBridge;
+
 public class ModuleLoader {
 
     @SuppressLint("SdCardPath")
@@ -26,9 +28,15 @@ public class ModuleLoader {
     static void copyModulesListToSd() throws IOException {
         File src = new File(MODULES_LIST_FILE);
         File dst = new File(PUBLIC_MODULES_LIST_FILE);
+        if (!src.exists()) {
+            XposedBridge.log("[XposedSettingsInjector] No modules.list found!");
+            return;
+        }
         if (!dst.exists()) {
-            dst.getParentFile().mkdir();
+            dst.getParentFile().mkdirs();
             dst.createNewFile();
+            dst.setReadable(true, false);
+            dst.setWritable(true, false);
         }
         FileInputStream in = new FileInputStream(src);
         FileOutputStream out = new FileOutputStream(dst);
@@ -63,6 +71,10 @@ public class ModuleLoader {
 
     static List<String> getActiveModulesFromSd() throws IOException {
         List<String> modules = new ArrayList<>();
+        if (!new File(PUBLIC_MODULES_LIST_FILE).exists()) {
+            XposedBridge.log("[XposedSettingsInjector] No public copy of modules.list found!");
+            return modules;
+        }
         String line;
         BufferedReader br = new BufferedReader(new FileReader(PUBLIC_MODULES_LIST_FILE));
         while ((line = br.readLine()) != null) {

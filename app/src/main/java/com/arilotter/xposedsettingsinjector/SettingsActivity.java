@@ -47,8 +47,8 @@ public class SettingsActivity extends Activity {
         @Override
         public void onPause() {
             super.onPause();
-            // Just to be sure
             getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+            // Just to be sure
             File sharedPrefsDir = new File(getActivity().getFilesDir(), "../shared_prefs");
             File sharedPrefsFile = new File(sharedPrefsDir, getPreferenceManager().getSharedPreferencesName() + ".xml");
             if (sharedPrefsFile.exists()) {
